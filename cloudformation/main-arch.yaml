@@ -1,0 +1,101 @@
+Description: >
+  Main Architecture Template. Configuration based on CodeCommit, S3, ECS, Docker & RDS - CI & CD over AWS
+
+
+Parameters:
+  CodeCommitRepo:
+    Type: String
+    Description: CodeCommit Repository Name
+
+  RepositoryBranch:
+    Type: String
+    Description: CodeCommit Repository Branch
+
+  DbPassword:
+    Type: String
+    Description: BackEnd DB Password
+
+
+Metadata:
+  AWS::CloudFormation::Interface:
+    ParameterLabels:
+      CodeCommitRepo:
+        default: "CodeCommit Repository Name"
+      RepositoryBranch:
+        default: "Code Repository Branch Name (master)"
+    ParameterGroups:
+      - Label:
+          default: CodeCommit Repository Configuration
+        Parameters:
+          - CodeCommitRepo
+          - RepositoryBranch
+
+
+Resources:
+  EcsCluster:
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      TemplateURL: https://s3.amazonaws.com/cicdoveraws/ecs-cluster.yaml
+      Parameters:
+        SourceSecurityGroup: !GetAtt LoadBalancer.Outputs.SecurityGroup
+        Subnets: !GetAtt VPC.Outputs.Subnets
+        VpcId: !GetAtt VPC.Outputs.VpcId
+        VpcDefaultSG: !GetAtt VPC.Outputs.VpcDefaultSG
+
+  LoadBalancer:
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      TemplateURL: https://s3.amazonaws.com/cicdoveraws/load-balancer.yaml
+      Parameters:
+        Subnets: !GetAtt VPC.Outputs.Subnets
+        VpcId: !GetAtt VPC.Outputs.VpcId
+
+  EcsService:
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      TemplateURL: https://s3.amazonaws.com/cicdoveraws/service.yaml
+      Parameters:
+        Cluster: !GetAtt EcsCluster.Outputs.ClusterName
+        TargetGroup: !GetAtt LoadBalancer.Outputs.TargetGroup
+
+  VPC:
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      TemplateURL: https://s3.amazonaws.com/cicdoveraws/vpc.yaml
+      Parameters:
+        Name: !Ref AWS::StackName
+        VpcCIDR: 10.10.0.0/16
+        Subnet1CIDR: 10.10.10.0/24
+        Subnet2CIDR: 10.10.20.0/24
+
+  DatabaseCluster:
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      TemplateURL: https://s3.amazonaws.com/cicdoveraws/db-cluster.yaml
+      Parameters:
+        DbPassword: !Ref DbPassword
+        Subnet1: !GetAtt VPC.Outputs.Subnet1
+        Subnet2: !GetAtt VPC.Outputs.Subnet2
+        Az1: !GetAtt VPC.Outputs.Az1
+        Az2: !GetAtt VPC.Outputs.Az2
+
+  DeploymentPipeline:
+   Type: AWS::CloudFormation::Stack
+   Properties:
+     TemplateURL: https://s3.amazonaws.com/cicdoveraws/deployment-pipeline.yaml
+     Parameters:
+       Cluster: !GetAtt EcsCluster.Outputs.ClusterName
+       CodeCommitRepo: !Ref CodeCommitRepo
+       RepositoryBranch: !Ref RepositoryBranch 
+       TargetGroup: !GetAtt LoadBalancer.Outputs.TargetGroup
+       Repository: !GetAtt EcsService.Outputs.Repository
+       StackName: !GetAtt EcsService.Outputs.StackName
+       TemplateBucket: cicdoveraws
+       DbClusterEndpoint: !GetAtt DatabaseCluster.Outputs.dbClusterURL
+       DbPassword: !Ref DbPassword
+
+
+Outputs:
+  ServiceUrl:
+    Description: Stack URL to use. Load Balancer Endpoint
+    Value: !GetAtt LoadBalancer.Outputs.ServiceUrl
