@@ -1,11 +1,11 @@
-# Public Subnets
+#### Public Subnets
 resource "aws_subnet" "public_subnet_us_east_1a" {
   vpc_id                  = "${aws_vpc.cluster_vpc.id}"
   cidr_block              = "10.0.0.0/20"
   map_public_ip_on_launch = true
   availability_zone = "us-east-1a"
   tags = {
-  	Name =  "Public Subnet 1"
+  	Name =  "cluster-public-subnet-1"
   }
 }
 
@@ -15,7 +15,7 @@ resource "aws_subnet" "public_subnet_us_east_1b" {
   map_public_ip_on_launch = true
   availability_zone = "us-east-1b"
   tags = {
-  	Name =  "Public Subnet 2"
+  	Name =  "cluster-public-subnet-2"
   }
 }
 
