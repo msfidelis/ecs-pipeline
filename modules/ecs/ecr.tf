@@ -1,3 +1,3 @@
 resource "aws_ecr_repository" "whoami-app" {
-  name = "${var.repository_name}"
+  name = "${var.app_repository_name}"
 }

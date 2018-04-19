@@ -1,5 +1,5 @@
-variable "environment" {
-  description = "The environment"
+variable "cluster_name" {
+  description = "The cluster_name"
 }
 
 variable "vpc_id" {
@@ -11,7 +11,22 @@ variable "availability_zones" {
   description = "The azs to use"
 }
 
-variable "security_groups_ids" {
-  type        = "list"
-  description = "The SGs to use in cluster"
+variable "public_subnet_1a" {
+  description = "Public Subnet on us-east-1a"
+}
+
+variable "public_subnet_1b" {
+  description = "Public Subnet on us-east-1b"
+}
+
+variable "app_sg_id" {
+  description = "App Security Group"
+}
+
+variable "alb_sg_id" {
+  description = "Application Load Balancer Security Group"
+}
+
+variable "app_repository_name" {
+  description = "Name of ECR Repository"
 }
