@@ -13,6 +13,12 @@ module "ecs" {
   alb_sg_id           = "${module.vpc.alb_sg_id}"
   app_repository_name = "${var.app_repository_name}"
 
+  security_groups_ids = [
+    "${module.vpc.app_sg_id}",
+    "${module.vpc.alb_sg_id}",
+    "${module.vpc.ecs_sg_id}",
+  ]
+
   availability_zones = [
     "${module.vpc.public_subnet_1a}",
     "${module.vpc.public_subnet_1b}",
@@ -26,4 +32,9 @@ module "pipeline" {
   repository_url      = "${module.ecs.repository_url}"
   vpc_id              = "${module.vpc.vpc_id}"
   region              = "${var.aws_region}"
+
+  subnet_ids = [
+    "${module.vpc.public_subnet_1a}",
+    "${module.vpc.public_subnet_1b}",
+  ]
 }

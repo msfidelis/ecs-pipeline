@@ -14,6 +14,11 @@ variable "repository_url" {
   description = "The url of the ECR repository"
 }
 
+variable "subnet_ids" {
+  type        = "list"
+  description = "Subnet ids"
+}
+
 variable "region" {
   description = "The region to use"
 }

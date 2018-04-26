@@ -27,6 +27,11 @@ variable "alb_sg_id" {
   description = "Application Load Balancer Security Group"
 }
 
+variable "security_groups_ids" {
+  type        = "list"
+  description = "Security group lists"
+}
+
 variable "app_repository_name" {
   description = "Name of ECR Repository"
 }
