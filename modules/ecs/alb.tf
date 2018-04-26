@@ -9,6 +9,8 @@ resource "aws_alb_target_group" "api_target_group" {
   lifecycle {
     create_before_destroy = true
   }
+
+  depends_on = ["aws_alb.app_alb"]
 }
 
 resource "aws_alb" "app_alb" {
@@ -20,6 +22,7 @@ resource "aws_alb" "app_alb" {
     Name        = "${var.cluster_name}-alb"
     Environment = "${var.cluster_name}"
   }
+  
 }
 
 resource "aws_alb_listener" "web_app" {

@@ -10,11 +10,12 @@ resource "aws_ecs_service" "web-api" {
   network_configuration {
     security_groups = ["${var.security_groups_ids}"]
     subnets         = ["${var.availability_zones}"]
+    assign_public_ip = true
   }
 
   load_balancer {
     target_group_arn = "${aws_alb_target_group.api_target_group.arn}"
-    container_name   = "whoami-api"
+    container_name   = "simple-api"
     container_port   = "80"
   }
 

@@ -1,11 +1,11 @@
 variable "cluster_name" {
   description = "ECS Cluster Name"
-  default     = "whoami"
+  default     = "simple-api"
 }
 
 variable "app_repository_name" {
   description = "ECR Repository Name"
-  default     = "whoami-api"
+  default     = "simple-api"
 }
 
 variable "aws_key_path" {

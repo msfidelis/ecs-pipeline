@@ -2,7 +2,7 @@ data "template_file" "api_task" {
   template = "${file("${path.module}/task-definitions/api-task.json")}"
 
   vars {
-    image     = "${aws_ecr_repository.whoami-app.repository_url}"
+    image     = "${aws_ecr_repository.simple-api.repository_url}"
     log_group = "${aws_cloudwatch_log_group.web-app.name}"
   }
 }

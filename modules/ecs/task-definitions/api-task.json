@@ -1,6 +1,6 @@
 [
     {
-      "name": "whoami-api",
+      "name": "simple-api",
       "image": "${image}",
       "portMappings": [
         {
@@ -17,13 +17,17 @@
         "options": {
           "awslogs-group": "${log_group}",
           "awslogs-region": "us-east-1",
-          "awslogs-stream-prefix": "whoami-api"
+          "awslogs-stream-prefix": "simple-api"
         }
       },
       "environment": [
         {
           "name": "FOO",
           "value": "BAR"
+        },
+        {
+          "name" : "PORT",
+          "value": "80"
         }
       ]
     }
