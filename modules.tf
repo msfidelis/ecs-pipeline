@@ -11,6 +11,7 @@ module "ecs" {
   public_subnet_1b    = "${module.vpc.public_subnet_1b}"
   app_sg_id           = "${module.vpc.app_sg_id}"
   alb_sg_id           = "${module.vpc.alb_sg_id}"
+  ecs_sg_id           = "${module.vpc.ecs_sg_id}"
   app_repository_name = "${var.app_repository_name}"
 
   security_groups_ids = [

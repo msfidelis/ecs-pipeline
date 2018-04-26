@@ -7,6 +7,6 @@ data "template_file" "buildspec" {
     cluster_name   = "${var.cluster_name}"
 
     # subnet_id          = "${var.run_task_subnet_id}"
-    security_group_ids = "${var.subnet_ids}"
+    security_group_ids = "${join(",",var.subnet_ids)}"
   }
 }

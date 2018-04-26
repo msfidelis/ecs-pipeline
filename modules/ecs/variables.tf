@@ -27,6 +27,10 @@ variable "alb_sg_id" {
   description = "Application Load Balancer Security Group"
 }
 
+variable "ecs_sg_id" {
+  description = "ECS Security Group"
+}
+
 variable "security_groups_ids" {
   type        = "list"
   description = "Security group lists"
