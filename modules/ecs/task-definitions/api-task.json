@@ -8,14 +8,16 @@
           "hostPort": 80
         }
       ],
+      "cpu": 10,
       "memory": 300,
       "networkMode": "awsvpc",
+      "essential": true,
       "logConfiguration": {
         "logDriver": "awslogs",
         "options": {
           "awslogs-group": "${log_group}",
           "awslogs-region": "us-east-1",
-          "awslogs-stream-prefix": "web"
+          "awslogs-stream-prefix": "whoami-api"
         }
       },
       "environment": [
