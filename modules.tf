@@ -18,3 +18,12 @@ module "ecs" {
     "${module.vpc.public_subnet_1b}",
   ]
 }
+
+module "pipeline" {
+  source              = "./modules/pipeline"
+  cluster_name        = "${var.cluster_name}"
+  app_repository_name = "${var.app_repository_name}"
+  repository_url      = "${module.ecs.repository_url}"
+  vpc_id              = "${module.vpc.vpc_id}"
+  region              = "${var.aws_region}"
+}

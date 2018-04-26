@@ -1,5 +1,5 @@
 # Target Group for Web App
-resource "aws_alb_target_group" "app_target_group" {
+resource "aws_alb_target_group" "api_target_group" {
   name        = "${var.cluster_name}-alb-target-group"
   port        = 80
   protocol    = "HTTP"
@@ -26,10 +26,10 @@ resource "aws_alb_listener" "web_app" {
   load_balancer_arn = "${aws_alb.app_alb.arn}"
   port              = "80"
   protocol          = "HTTP"
-  depends_on        = ["aws_alb_target_group.app_target_group"]
+  depends_on        = ["aws_alb_target_group.api_target_group"]
 
   default_action {
-    target_group_arn = "${aws_alb_target_group.app_target_group.arn}"
+    target_group_arn = "${aws_alb_target_group.api_target_group.arn}"
     type             = "forward"
   }
 }
