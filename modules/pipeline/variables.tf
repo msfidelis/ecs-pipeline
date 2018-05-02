@@ -6,6 +6,10 @@ variable "app_repository_name" {
   description = "ECR Repository name"
 }
 
+variable "app_service_name" {
+  description = "Service name"
+}
+
 variable "vpc_id" {
   description = "The VPC id"
 }

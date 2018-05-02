@@ -31,6 +31,7 @@ module "pipeline" {
   cluster_name        = "${var.cluster_name}"
   app_repository_name = "${var.app_repository_name}"
   repository_url      = "${module.ecs.repository_url}"
+  app_service_name    = "${module.ecs.service_name}"
   vpc_id              = "${module.vpc.vpc_id}"
   region              = "${var.aws_region}"
 
