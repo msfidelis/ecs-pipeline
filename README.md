@@ -17,7 +17,7 @@ Create environment and deployment pipelines using ECS, ECR, CodePipeline and Git
 export GITHUB_TOKEN=YOUR_TOKEN
 ``` 
 
-2) Terraform 
+## 2) Terraform 
 
 * Initialize Terraform 
 
