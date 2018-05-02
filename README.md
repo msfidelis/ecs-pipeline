@@ -6,9 +6,9 @@ Create environment and deployment pipelines using ECS, ECR, CodePipeline and Git
 
 ## 1) Github Access Token
 
-* Create your Github Access Token to Command Line. ![This link have all information about this](https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/). 
+* Create your Github Access Token to Command Line. [This link have all information about this](https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/). 
 
-* Export Github Token as an Environment Variable
+* Export Github Token as an environment variable. 
 
 ```bash
 export GITHUB_TOKEN=YOUR_TOKEN
