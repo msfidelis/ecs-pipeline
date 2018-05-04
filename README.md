@@ -39,8 +39,8 @@ terraform apply
 
 #### References
 
-[Easy deploy your Docker applications to AWS using ECS and Fargate](https://thecode.pub/easy-deploy-your-docker-applications-to-aws-using-ecs-and-fargate-a988a1cc842f)
+* [Easy deploy your Docker applications to AWS using ECS and Fargate](https://thecode.pub/easy-deploy-your-docker-applications-to-aws-using-ecs-and-fargate-a988a1cc842f)
 
-[ECS Terraform - By alex](https://github.com/alex/ecs-terraform)
+* [ECS Terraform - By alex](https://github.com/alex/ecs-terraform)
 
-[Terraform-ECS by arminc](https://github.com/arminc/terraform-ecs)
+* [Terraform-ECS by arminc](https://github.com/arminc/terraform-ecs)
