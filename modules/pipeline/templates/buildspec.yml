@@ -5,14 +5,20 @@ phases:
     commands:
       - pip install awscli --upgrade --user
       - echo `aws --version`
+      - echo Installing Node 8
+      - curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
+      - apt-get install -y nodejs  
       - echo Logging in to Amazon ECR...
       - $(aws ecr get-login --region ${region} --no-include-email)
       - REPOSITORY_URI=${repository_url}
       - IMAGE_TAG=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
       - echo Entered the pre_build phase...
+      - npm install
   build:
     commands:
       - echo Build started on `date`
+      - echo Starting Unit Tests
+      - npm run unit-test
       - echo Building the Docker image...
       - docker build -t $REPOSITORY_URI:latest .
       - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG
