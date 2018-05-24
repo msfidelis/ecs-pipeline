@@ -1,7 +1,7 @@
 # Target Group for Web App
 resource "aws_alb_target_group" "api_target_group" {
   name        = "${var.cluster_name}-alb-target-group"
-  port        = 80
+  port        = "${var.alb_target_port}"
   protocol    = "HTTP"
   vpc_id      = "${var.vpc_id}"
   target_type = "ip"
@@ -22,12 +22,11 @@ resource "aws_alb" "app_alb" {
     Name        = "${var.cluster_name}-alb"
     Environment = "${var.cluster_name}"
   }
-  
 }
 
 resource "aws_alb_listener" "web_app" {
   load_balancer_arn = "${aws_alb.app_alb.arn}"
-  port              = "80"
+  port              = "${var.alb_listener_port}"
   protocol          = "HTTP"
   depends_on        = ["aws_alb_target_group.api_target_group"]
 

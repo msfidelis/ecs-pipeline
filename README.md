@@ -3,6 +3,14 @@ Create environment and deployment pipelines using ECS, ECR, CodePipeline and Git
 
 ![Steps](etc/img/pipeline-demo.png)
 
+# Edit your preferences
+
+Edit `variables.tf` file to customize application preferences like Github account, repo and owner, Load Balancer ports and cluster preferences. 
+
+# Edit your Build steps
+
+This demo build, dockerize and deploy a simple Node.JS application. Customize your build steps on `modules/pipeline/templates/buildspec.yml` file. 
+
 
 # How to Deploy
 

@@ -19,9 +19,9 @@ resource "aws_codepipeline" "pipeline" {
       output_artifacts = ["source"]
 
       configuration {
-        Owner  = "msfidelis"
-        Repo   = "micro-api"
-        Branch = "master"
+        Owner  = "${var.git_repository_owner}"
+        Repo   = "${var.git_repository_name}"
+        Branch = "${var.git_repository_branch}"
       }
     }
   }

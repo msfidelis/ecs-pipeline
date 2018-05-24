@@ -13,6 +13,8 @@ module "ecs" {
   alb_sg_id           = "${module.vpc.alb_sg_id}"
   ecs_sg_id           = "${module.vpc.ecs_sg_id}"
   app_repository_name = "${var.app_repository_name}"
+  alb_listener_port   = "${var.alb_listener_port}"
+  alb_target_port     = "${var.alb_target_port}"
 
   security_groups_ids = [
     "${module.vpc.app_sg_id}",
@@ -27,13 +29,16 @@ module "ecs" {
 }
 
 module "pipeline" {
-  source              = "./modules/pipeline"
-  cluster_name        = "${var.cluster_name}"
-  app_repository_name = "${var.app_repository_name}"
-  repository_url      = "${module.ecs.repository_url}"
-  app_service_name    = "${module.ecs.service_name}"
-  vpc_id              = "${module.vpc.vpc_id}"
-  region              = "${var.aws_region}"
+  source                = "./modules/pipeline"
+  cluster_name          = "${var.cluster_name}"
+  app_repository_name   = "${var.app_repository_name}"
+  git_repository_owner  = "${var.git_repository_owner}"
+  git_repository_name   = "${var.git_repository_name}"
+  git_repository_branch = "${var.git_repository_branch}"
+  repository_url        = "${module.ecs.repository_url}"
+  app_service_name      = "${module.ecs.service_name}"
+  vpc_id                = "${module.vpc.vpc_id}"
+  region                = "${var.aws_region}"
 
   subnet_ids = [
     "${module.vpc.public_subnet_1a}",

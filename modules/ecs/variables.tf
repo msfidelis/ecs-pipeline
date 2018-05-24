@@ -39,3 +39,11 @@ variable "security_groups_ids" {
 variable "app_repository_name" {
   description = "Name of ECR Repository"
 }
+
+variable "alb_listener_port" {
+  description = "ALB listener port"
+}
+
+variable "alb_target_port" {
+  description = "ALB target port"
+}
