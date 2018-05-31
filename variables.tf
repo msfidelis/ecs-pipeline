@@ -5,7 +5,7 @@
 # Customize your ECS Cluster Options
 variable "cluster_name" {
   description = "ECS Cluster Name"
-  default     = "simple-api"
+  default     = "web-app"
 }
 
 variable "desired_tasks" {
@@ -26,7 +26,7 @@ variable "desired_task_memory" {
 # Customize your ECR Registry Name
 variable "app_repository_name" {
   description = "ECR Repository Name"
-  default     = "simple-api"
+  default     = "web-app"
 }
 
 # Github Repository Owner

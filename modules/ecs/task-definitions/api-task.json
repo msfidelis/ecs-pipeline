@@ -1,6 +1,6 @@
 [
     {
-      "name": "simple-api",
+      "name": "web-app",
       "image": "${image}",
       "portMappings": [
         {
@@ -17,7 +17,7 @@
         "options": {
           "awslogs-group": "${log_group}",
           "awslogs-region": "us-east-1",
-          "awslogs-stream-prefix": "simple-api"
+          "awslogs-stream-prefix": "web-app"
         }
       },
       "environment": [
