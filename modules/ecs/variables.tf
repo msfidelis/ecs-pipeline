@@ -47,3 +47,15 @@ variable "alb_listener_port" {
 variable "alb_target_port" {
   description = "ALB target port"
 }
+
+variable "desired_tasks" {
+  description = "Number of containers desired to run the application task"
+}
+
+variable "desired_task_cpu" {
+  description = "Task CPU Limit"
+}
+
+variable "desired_task_memory" {
+  description = "Task Memory Limit"
+}

@@ -2,10 +2,25 @@
 ###### QUICK EDIT'S HERE  ######
 ################################
 
-# Customize your ECS Cluster NAme
+# Customize your ECS Cluster Options
 variable "cluster_name" {
   description = "ECS Cluster Name"
   default     = "simple-api"
+}
+
+variable "desired_tasks" {
+  description = "Number of containers desired to run app task"
+  default     = 3
+}
+
+variable "desired_task_cpu" {
+  description = "Desired CPU to run your tasks"
+  default     = "256"
+}
+
+variable "desired_task_memory" {
+  description = "Desired memory to run your tasks"
+  default     = "512"
 }
 
 # Customize your ECR Registry Name

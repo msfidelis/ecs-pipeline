@@ -15,6 +15,9 @@ module "ecs" {
   app_repository_name = "${var.app_repository_name}"
   alb_listener_port   = "${var.alb_listener_port}"
   alb_target_port     = "${var.alb_target_port}"
+  desired_tasks       = "${var.desired_tasks}"
+  desired_task_cpu    = "${var.desired_task_cpu}"
+  desired_task_memory = "${var.desired_task_memory}"
 
   security_groups_ids = [
     "${module.vpc.app_sg_id}",
