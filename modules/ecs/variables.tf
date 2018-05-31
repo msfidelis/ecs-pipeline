@@ -2,6 +2,10 @@ variable "cluster_name" {
   description = "The cluster_name"
 }
 
+variable "container_name" {
+  description = "Container name"
+}
+
 variable "vpc_id" {
   description = "The VPC id"
 }

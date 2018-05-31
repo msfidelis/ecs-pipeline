@@ -8,6 +8,11 @@ variable "cluster_name" {
   default     = "web-app"
 }
 
+variable "container_name" {
+  description = "Container app name"
+  default     = "micro-api"
+}
+
 variable "desired_tasks" {
   description = "Number of containers desired to run app task"
   default     = 3

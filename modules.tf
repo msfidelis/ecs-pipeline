@@ -7,6 +7,7 @@ module "ecs" {
   source              = "./modules/ecs"
   vpc_id              = "${module.vpc.vpc_id}"
   cluster_name        = "${var.cluster_name}"
+  container_name      = "${var.container_name}"
   public_subnet_1a    = "${module.vpc.public_subnet_1a}"
   public_subnet_1b    = "${module.vpc.public_subnet_1b}"
   app_sg_id           = "${module.vpc.app_sg_id}"
