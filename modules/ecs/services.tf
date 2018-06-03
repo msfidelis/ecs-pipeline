@@ -1,5 +1,5 @@
 resource "aws_ecs_service" "web-api" {
-  name            = "${var.cluster_name}-web"
+  name            = "${var.cluster_name}"
   task_definition = "${aws_ecs_task_definition.web-api.arn}"
   cluster         = "${aws_ecs_cluster.cluster.id}"
   launch_type     = "FARGATE"

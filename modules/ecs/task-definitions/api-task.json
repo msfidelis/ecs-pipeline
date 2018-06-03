@@ -1,6 +1,6 @@
 [
     {
-      "name": "web-app",
+      "name": "${container_name}",
       "image": "${image}",
       "portMappings": [
         {
@@ -17,7 +17,7 @@
         "options": {
           "awslogs-group": "${log_group}",
           "awslogs-region": "us-east-1",
-          "awslogs-stream-prefix": "web-app"
+          "awslogs-stream-prefix": "${container_name}"
         }
       },
       "environment": [

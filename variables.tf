@@ -40,6 +40,18 @@ variable "desired_task_memory" {
   default     = "512"
 }
 
+# Listener Application Load Balancer Port
+variable "alb_listener_port" {
+  description = "Origin Application Load Balancer Port"
+  default     = "80"
+}
+
+# Target Group Load Balancer Port
+variable "alb_target_port" {
+  description = "Destination Application Load Balancer Port"
+  default     = "80"
+}
+
 ###### GITHUB OPTIONS  ######
 
 # Github Repository Owner
@@ -58,18 +70,6 @@ variable "git_repository_name" {
 variable "git_repository_branch" {
   description = "Github Project Branch"
   default     = "master"
-}
-
-# Listener Application Load Balancer Port
-variable "alb_listener_port" {
-  description = "Origin Application Load Balancer Port"
-  default     = "80"
-}
-
-# Target Group Load Balancer Port
-variable "alb_target_port" {
-  description = "Destination Application Load Balancer Port"
-  default     = "80"
 }
 
 # Customize your AWS Region

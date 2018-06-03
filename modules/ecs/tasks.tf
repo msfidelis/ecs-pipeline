@@ -2,8 +2,9 @@ data "template_file" "api_task" {
   template = "${file("${path.module}/task-definitions/api-task.json")}"
 
   vars {
-    image     = "${aws_ecr_repository.web-app.repository_url}"
-    log_group = "${aws_cloudwatch_log_group.web-app.name}"
+    image          = "${aws_ecr_repository.web-app.repository_url}"
+    container_name = "${var.container_name}"
+    log_group      = "${aws_cloudwatch_log_group.web-app.name}"
   }
 }
 
