@@ -8,8 +8,8 @@
           "hostPort": ${container_port}
         }
       ],
-      "cpu": 10,
-      "memory": 300,
+      "cpu": ${desired_task_cpu},
+      "memory": ${desired_task_memory},
       "networkMode": "awsvpc",
       "essential": true,
       "logConfiguration": {
