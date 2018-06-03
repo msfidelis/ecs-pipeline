@@ -41,13 +41,13 @@ variable "desired_task_memory" {
 }
 
 # Listener Application Load Balancer Port
-variable "alb_listener_port" {
+variable "alb_port" {
   description = "Origin Application Load Balancer Port"
   default     = "80"
 }
 
 # Target Group Load Balancer Port
-variable "alb_target_port" {
+variable "container_port" {
   description = "Destination Application Load Balancer Port"
   default     = "80"
 }

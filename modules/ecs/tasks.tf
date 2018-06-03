@@ -4,12 +4,13 @@ data "template_file" "api_task" {
   vars {
     image          = "${aws_ecr_repository.web-app.repository_url}"
     container_name = "${var.container_name}"
+    container_port = "${var.container_port}"
     log_group      = "${aws_cloudwatch_log_group.web-app.name}"
   }
 }
 
 resource "aws_ecs_task_definition" "web-api" {
-  family                   = "${var.cluster_name}_web"
+  family                   = "${var.cluster_name}_app"
   container_definitions    = "${data.template_file.api_task.rendered}"
   requires_compatibilities = ["FARGATE"]
   network_mode             = "awsvpc"

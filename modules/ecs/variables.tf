@@ -44,11 +44,11 @@ variable "app_repository_name" {
   description = "Name of ECR Repository"
 }
 
-variable "alb_listener_port" {
+variable "alb_port" {
   description = "ALB listener port"
 }
 
-variable "alb_target_port" {
+variable "container_port" {
   description = "ALB target port"
 }
 

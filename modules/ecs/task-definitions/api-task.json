@@ -4,8 +4,8 @@
       "image": "${image}",
       "portMappings": [
         {
-          "containerPort": 80,
-          "hostPort": 80
+          "containerPort": ${container_port},
+          "hostPort": ${container_port}
         }
       ],
       "cpu": 10,
@@ -27,7 +27,7 @@
         },
         {
           "name" : "PORT",
-          "value": "80"
+          "value": "${container_port}"
         }
       ]
     }
