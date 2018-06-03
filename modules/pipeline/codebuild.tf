@@ -5,6 +5,7 @@ data "template_file" "buildspec" {
     repository_url = "${var.repository_url}"
     region         = "${var.region}"
     cluster_name   = "${var.cluster_name}"
+    container_name = "${var.container_name}"
 
     # subnet_id          = "${var.run_task_subnet_id}"
     security_group_ids = "${join(",",var.subnet_ids)}"

@@ -1,6 +1,8 @@
 module "vpc" {
-  source       = "./modules/vpc"
-  cluster_name = "${var.cluster_name}"
+  source         = "./modules/vpc"
+  cluster_name   = "${var.cluster_name}"
+  alb_port       = "${var.alb_port}"
+  container_port = "${var.container_port}"
 }
 
 module "ecs" {
@@ -14,8 +16,8 @@ module "ecs" {
   alb_sg_id           = "${module.vpc.alb_sg_id}"
   ecs_sg_id           = "${module.vpc.ecs_sg_id}"
   app_repository_name = "${var.app_repository_name}"
-  alb_port   = "${var.alb_port}"
-  container_port     = "${var.container_port}"
+  alb_port            = "${var.alb_port}"
+  container_port      = "${var.container_port}"
   desired_tasks       = "${var.desired_tasks}"
   desired_task_cpu    = "${var.desired_task_cpu}"
   desired_task_memory = "${var.desired_task_memory}"
@@ -35,6 +37,7 @@ module "ecs" {
 module "pipeline" {
   source                = "./modules/pipeline"
   cluster_name          = "${var.cluster_name}"
+  container_name        = "${var.container_name}"
   app_repository_name   = "${var.app_repository_name}"
   git_repository_owner  = "${var.git_repository_owner}"
   git_repository_name   = "${var.git_repository_name}"

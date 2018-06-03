@@ -38,3 +38,7 @@ variable "subnet_ids" {
 variable "region" {
   description = "The region to use"
 }
+
+variable "container_name" {
+  description = "Container name"
+}
