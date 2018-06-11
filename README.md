@@ -7,7 +7,7 @@ Create environment and deployment pipelines using ECS, ECR, CodePipeline and Git
 
 ## Deploy Pipeline
 
-![Steps](etc/img/pipeline-demo.png)
+![Steps](.github/images/pipeline-demo.png)
 
 # How to Deploy
 
