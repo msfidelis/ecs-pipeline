@@ -15,6 +15,48 @@ Create environment and deployment pipelines using ECS, ECR, CodePipeline and Git
 
 Edit `variables.tf` file to customize application preferences like Github account, repo and owner, Load Balancer ports and cluster preferences. 
 
+```hcl
+# Customize the Cluster Name
+variable "cluster_name" {
+  description = "ECS Cluster Name"
+  default     = "web-app"
+}
+
+# Customize your ECR Registry Name
+variable "app_repository_name" {
+  description = "ECR Repository Name"
+  default     = "web-app"
+}
+
+###### APPLICATION OPTIONS  ######
+variable "container_name" {
+  description = "Container app name"
+  default     = "micro-api"
+}
+```
+
+Edit the Github preferences in the same file to specify infos like repo, owner or organization, branches e etc. 
+
+```hcl
+# Github Repository Owner
+variable "git_repository_owner" {
+  description = "Github Repository Owner"
+  default     = "msfidelis"
+}
+
+# Github Repository Project Name
+variable "git_repository_name" {
+  description = "Project name on Github"
+  default     = "micro-api"
+}
+
+# Default Branch
+variable "git_repository_branch" {
+  description = "Github Project Branch"
+  default     = "master"
+}
+```
+
 ## Edit your Build steps
 
 This demo build, dockerize and deploy a simple Node.JS application. Customize your build steps on `modules/pipeline/templates/buildspec.yml` file. 
