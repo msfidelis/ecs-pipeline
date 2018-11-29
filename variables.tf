@@ -28,6 +28,26 @@ variable "desired_tasks" {
   default     = 2
 }
 
+variable "min_tasks" {
+  description = "Minimum"
+  default     = 2
+}
+
+variable "max_tasks" {
+  description = "Maximum"
+  default     = 4
+}
+
+variable "cpu_to_scale_up" {
+  description = "CPU % to Scale Up the number of containers"
+  default     = 80
+}
+
+variable "cpu_to_scale_down" {
+  description = "CPU % to Scale Down the number of containers"
+  default     = 30
+}
+
 # Desired CPU
 variable "desired_task_cpu" {
   description = "Desired CPU to run your tasks"
