@@ -63,3 +63,19 @@ variable "desired_task_cpu" {
 variable "desired_task_memory" {
   description = "Task Memory Limit"
 }
+
+variable "min_tasks" {
+  description = "Minimum"
+}
+
+variable "max_tasks" {
+  description = "Maximum"
+}
+
+variable "cpu_to_scale_up" {
+  description = "CPU % to Scale Up the number of containers"
+}
+
+variable "cpu_to_scale_down" {
+  description = "CPU % to Scale Down the number of containers"
+}
