@@ -57,6 +57,36 @@ variable "git_repository_branch" {
 }
 ```
 
+## Edit Auto Scaling Metrics
+
+```hcl
+# Number of containers
+variable "desired_tasks" {
+  description = "Number of containers desired to run app task"
+  default     = 2
+}
+
+variable "min_tasks" {
+  description = "Minimum"
+  default     = 2
+}
+
+variable "max_tasks" {
+  description = "Maximum"
+  default     = 4
+}
+
+variable "cpu_to_scale_up" {
+  description = "CPU % to Scale Up the number of containers"
+  default     = 80
+}
+
+variable "cpu_to_scale_down" {
+  description = "CPU % to Scale Down the number of containers"
+  default     = 30
+}
+```
+
 ## Edit your Build steps
 
 This demo build, dockerize and deploy a simple Node.JS application. Customize your build steps on `modules/pipeline/templates/buildspec.yml` file. 
