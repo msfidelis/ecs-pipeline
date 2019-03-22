@@ -48,6 +48,7 @@ module "pipeline" {
   git_repository_branch = "${var.git_repository_branch}"
   repository_url        = "${module.ecs.repository_url}"
   app_service_name      = "${module.ecs.service_name}"
+  account_id            = "${data.aws_caller_identity.current.account_id}"
   vpc_id                = "${module.vpc.vpc_id}"
   region                = "${var.aws_region}"
 
