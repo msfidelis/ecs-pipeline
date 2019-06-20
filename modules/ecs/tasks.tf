@@ -1,7 +1,7 @@
 data "template_file" "api_task" {
   template = "${file("${path.module}/task-definitions/api-task.json")}"
 
-  vars {
+  vars = {
     image               = "${aws_ecr_repository.web-app.repository_url}"
     container_name      = "${var.container_name}"
     container_port      = "${var.container_port}"

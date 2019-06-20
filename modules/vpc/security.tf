@@ -19,7 +19,7 @@ resource "aws_security_group" "app_sg" {
     self      = "true"
   }
 
-  tags {
+  tags = {
     Environment = "${var.cluster_name}"
   }
 }
@@ -51,7 +51,7 @@ resource "aws_security_group" "alb_sg" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  tags {
+  tags = {
     Name = "${var.cluster_name}-alb-sg"
   }
 }
@@ -76,7 +76,7 @@ resource "aws_security_group" "ecs_sg" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  tags {
+  tags = {
     Name        = "${var.cluster_name}-ecs-service-sg"
     Environment = "${var.cluster_name}"
   }

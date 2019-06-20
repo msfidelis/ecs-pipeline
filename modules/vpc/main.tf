@@ -11,7 +11,7 @@ resource "aws_vpc" "cluster_vpc" {
 # Internet Gateway
 resource "aws_internet_gateway" "gw" {
   vpc_id = "${aws_vpc.cluster_vpc.id}"
-  tags {
+  tags = {
         Name = "InternetGateway"
     }
 }

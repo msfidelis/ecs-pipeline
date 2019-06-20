@@ -18,7 +18,7 @@ resource "aws_codepipeline" "pipeline" {
       version          = "1"
       output_artifacts = ["source"]
 
-      configuration {
+      configuration = {
         Owner  = "${var.git_repository_owner}"
         Repo   = "${var.git_repository_name}"
         Branch = "${var.git_repository_branch}"
@@ -38,7 +38,7 @@ resource "aws_codepipeline" "pipeline" {
       input_artifacts  = ["source"]
       output_artifacts = ["imagedefinitions"]
 
-      configuration {
+      configuration = {
         ProjectName = "${var.cluster_name}-codebuild"
       }
     }
@@ -55,7 +55,7 @@ resource "aws_codepipeline" "pipeline" {
       input_artifacts = ["imagedefinitions"]
       version         = "1"
 
-      configuration {
+      configuration = {
         ClusterName = "${var.cluster_name}"
         ServiceName = "${var.app_service_name}"
         FileName    = "imagedefinitions.json"

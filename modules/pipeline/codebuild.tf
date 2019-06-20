@@ -1,7 +1,7 @@
 data "template_file" "buildspec" {
   template = "${file("${path.module}/templates/buildspec.yml")}"
 
-  vars {
+  vars = {
     repository_url = "${var.repository_url}"
     region         = "${var.region}"
     cluster_name   = "${var.cluster_name}"

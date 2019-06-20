@@ -8,8 +8,8 @@ resource "aws_ecs_service" "web-api" {
   depends_on = ["aws_iam_role_policy.ecs_service_role_policy"]
 
   network_configuration {
-    security_groups  = ["${var.security_groups_ids}"]
-    subnets          = ["${var.availability_zones}"]
+    security_groups  ="${var.security_groups_ids}"
+    subnets          = "${var.availability_zones}"
     assign_public_ip = true
   }
 
@@ -18,6 +18,4 @@ resource "aws_ecs_service" "web-api" {
     container_name   = "${var.container_name}"
     container_port   = "${var.container_port}"
   }
-
-  depends_on = ["aws_alb_target_group.api_target_group"]
 }

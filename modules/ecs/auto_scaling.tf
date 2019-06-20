@@ -19,7 +19,7 @@ resource "aws_cloudwatch_metric_alarm" "cpu_utilization_high" {
   statistic           = "Average"
   threshold           = "${var.cpu_to_scale_up}"
 
-  dimensions {
+  dimensions = {
     ClusterName = "${aws_ecs_cluster.cluster.name}"
     ServiceName = "${aws_ecs_service.web-api.name}"
   }
@@ -55,7 +55,7 @@ resource "aws_cloudwatch_metric_alarm" "cpu_utilization_low" {
   statistic           = "Average"
   threshold           = "${var.cpu_to_scale_down}"
 
-  dimensions {
+  dimensions = {
     ClusterName = "${aws_ecs_cluster.cluster.name}"
     ServiceName = "${aws_ecs_service.web-api.name}"
   }
