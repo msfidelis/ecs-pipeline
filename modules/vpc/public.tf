@@ -8,7 +8,7 @@ resource "aws_subnet" "public_subnet_us_east_1a" {
   availability_zone       = "us-east-1a"
 
   tags = {
-    Name = "cluster-public-subnet-1"
+    Name = "${var.cluster_name}-public-subnet-1a"
   }
 }
 
@@ -20,7 +20,7 @@ resource "aws_subnet" "public_subnet_us_east_1b" {
   availability_zone       = "us-east-1b"
 
   tags = {
-    Name = "cluster-public-subnet-2"
+    Name = "${var.cluster_name}-public-subnet-1b"
   }
 }
 
