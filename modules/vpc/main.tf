@@ -4,7 +4,7 @@ resource "aws_vpc" "cluster_vpc" {
   enable_dns_support = true
   enable_dns_hostnames = true
   tags = {
-    Name = "Cluster VPC"
+    Name = "${var.cluster_name}-vpc"
   }
 }
 
@@ -12,7 +12,7 @@ resource "aws_vpc" "cluster_vpc" {
 resource "aws_internet_gateway" "gw" {
   vpc_id = "${aws_vpc.cluster_vpc.id}"
   tags {
-        Name = "InternetGateway"
+        Name = "${var.cluster_name}-igw"
     }
 }
 
