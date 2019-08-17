@@ -134,4 +134,3 @@ terraform apply
 * [Terraform-ECS by arminc](https://github.com/arminc/terraform-ecs)
 
 
-
