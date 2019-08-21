@@ -22,9 +22,3 @@ resource "aws_route" "internet_access" {
   destination_cidr_block = "0.0.0.0/0"
   gateway_id             = "${aws_internet_gateway.gw.id}"
 }
-
-# Elastic IP
-resource "aws_eip" "vpc_eip" {
-  vpc      = true
-  depends_on = ["aws_internet_gateway.gw"]
-}
