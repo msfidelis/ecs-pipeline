@@ -16,6 +16,10 @@ resource "aws_ecs_service" "web-api" {
     container_name   = "${var.container_name}"
     container_port   = "${var.container_port}"
   }
+  
+  lifecycle {
+    ignore_changes = ["desired_count"]
+  }  
 
   depends_on = ["aws_alb_target_group.api_target_group"]
 }
