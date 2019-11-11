@@ -1,7 +1,7 @@
 # ECS Simple Pipeline - Easy way to deploy Containers on AWS
 Create environment and deployment pipelines using ECS, ECR, CodePipeline and Git with Terraform
 
-## Check this repo if you need to ship 2 or more services to production - [ECS Microservices Orchestration](https://github.com/msfidelis/ecs-microservices-orchestration)
+## Check this repo if you need to ship more services to production - [ECS Microservices Orchestration](https://github.com/msfidelis/ecs-microservices-orchestration)
 
 ## Architecture 
 
