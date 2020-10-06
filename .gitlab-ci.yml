@@ -1,0 +1,73 @@
+variables:
+    PWD: $PWD
+    CI_DIR: ./
+    ACCOUNT: $ACCOUNT
+    REPO: $REPO
+    PROD_DOCKER_REGISTRY: "dkr.ecr.us-east-1.amazonaws.com"
+  
+  stages:
+    - infra_build
+    - infra_apply
+    - docker
+  
+  .template_terraform: &template_terraform
+    image:
+      name: hashicorp/terraform:0.12.29
+      entrypoint: [""]
+    before_script:
+      - apk --no-cache add curl  
+      - export TF_VAR_image_tag=${CI_COMMIT_REF_NAME}.${CI_COMMIT_SHA:0:8}
+      - cd $CI_PROJECT_DIR/infra/environments/ecs-prod
+      - terraform init
+  
+  .template_docker: &template_docker
+    image: wedneyyuri/awscli-dind
+    services:
+      - docker:18.09-dind
+    script:
+      - cd docker/
+      - echo `aws ecr get-login --region us-east-1 --no-include-email` | sh
+      - docker build -t ${ACCOUNT}.${DOCKER_REGISTRY}/${REPO}/${SERVICE}:latest -f ${DOCKERFILE} ..
+      - docker push ${ACCOUNT}.${DOCKER_REGISTRY}/${REPO}/${SERVICE}:latest
+  
+  infra:build:infra:
+    <<: *template_terraform
+    stage: infra_build
+    variables:
+        AWS_ACCESS_KEY_ID: $PROD_AWS_ACCESS_KEY_ID
+        AWS_SECRET_ACCESS_KEY: $PROD_AWS_SECRET_ACCESS_KEY
+        TF_VAR_team: "squad-foo"
+        TF_VAR_application: "app-foo"
+    script:
+        - export TF_VAR_team=squad-foo
+        - export TF_VAR_application=app-foo
+        - terraform plan
+        - 'terraform state pull | curl -s -X POST -H "Content-Type: application/json" -d @- https://cost.modules.tf/'
+    only:
+        - master
+          
+  env-prod:deploy:
+    <<: *template_terraform
+    stage: infra_apply
+    only:
+        - master
+    variables:
+        AWS_ACCESS_KEY_ID: $PROD_AWS_ACCESS_KEY_ID
+        AWS_SECRET_ACCESS_KEY: $PROD_AWS_SECRET_ACCESS_KEY
+    script:
+        - export TF_VAR_team=squad-foo
+        - export TF_VAR_application=app-foo
+        - terraform apply
+
+  image:build:docker:
+    <<: *template_docker
+    stage: docker
+    only:
+        - master
+    variables:
+      AWS_ACCESS_KEY_ID: $PROD_AWS_ACCESS_KEY_ID
+      AWS_SECRET_ACCESS_KEY: $PROD_AWS_SECRET_ACCESS_KEY
+      ACCOUNT: $ACCOUNT
+      DOCKER_REGISTRY: $PROD_DOCKER_REGISTRY
+      SERVICE: "xxx-xxx"
+      DOCKERFILE: Dockerfile
